@@ -54,20 +54,26 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  if (model.doctors == null) CircularProgressIndicator(),
-                  GridView.count(
-                    mainAxisSpacing: 1.0,
-                    crossAxisSpacing: 1.0,
-                    childAspectRatio: 1 / 1.5,
-                    physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    children: List.generate(
-                        model.doctors!.length,
-                        (index) => InkWell(
-                            onTap: () {},
-                            child: recDocItem(
-                                model.doctors![index], context, index))),
+
+                  if(model.doctors == null)
+
+                    CircularProgressIndicator(color: sColor,),
+
+                  SingleChildScrollView(
+                    child: GridView.count(
+                      mainAxisSpacing: 1.0,
+                      crossAxisSpacing: 1.0,
+                      childAspectRatio: 1 / 1.5,
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      children: List.generate(
+                          model.doctors.length,
+                          (index) => InkWell(
+                              onTap: () {},
+                              child: recDocItem(
+                                  model.doctors[index], context, index))),
+                    ),
                   )
                 ],
               ),

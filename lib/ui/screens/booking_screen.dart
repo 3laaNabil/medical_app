@@ -35,8 +35,8 @@ class BookingScreen extends StatelessWidget {
                     itemBuilder: (context, index) => InkWell(
                       onTap: (){},
                         child:
-                            doctorItem(model.doctors![index], context, index)),
-                    itemCount: model.doctors!.length,
+                            doctorItem(model.doctors[index], context, index)),
+                    itemCount: model.doctors.length,
                   )
                 ],
               ),

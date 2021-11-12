@@ -49,7 +49,7 @@ class MedicalProvider extends ChangeNotifier {
   }
 
 
-  List<DoctorsModel> ?doctors ;
+  List<DoctorsModel> doctors = [] ;
   getAllDoctors() async {
     FirebaseFirestore.instance
         .collection('doctors')
@@ -58,7 +58,7 @@ class MedicalProvider extends ChangeNotifier {
 
           doctors= [];
       for (var element  in querySnapshot.docs) {
-    doctors!.add(DoctorsModel.fromJson(element.data()as Map<String, dynamic>) );
+    doctors.add(DoctorsModel.fromJson(element.data()as Map<String, dynamic>) );
     print(element.data());
       }
     });
