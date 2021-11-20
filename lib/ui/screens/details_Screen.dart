@@ -1,19 +1,22 @@
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_remix/flutter_remix.dart';
 import 'package:medical_app/business_logic/medical/provider.dart';
 import 'package:medical_app/constants.dart';
 import 'package:medical_app/data/model/doctors_model.dart';
 import 'package:medical_app/ui/widgets/btn.dart';
-import 'package:medical_app/ui/widgets/form_field.dart';
+
 import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatelessWidget {
   int itemIndex;
 
   DetailsScreen({required this.itemIndex});
-  var bookingController = TextEditingController();
+  //var bookingController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  DatePickerController _controller = DatePickerController();
+
+  DateTime _selectedValue = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Consumer<MedicalProvider>(
@@ -23,12 +26,18 @@ class DetailsScreen extends StatelessWidget {
                 iconTheme: IconThemeData(color: sColor),
                 backgroundColor: mainColor,
                 elevation: 0,
+                title: Text(
+                  "Dr/${model.doctors[itemIndex].name}",
+                  style: TextStyle(color: sColor, fontSize: 20),
+                ),
               ),
-              body: buildDetailsScreen(model.doctors[itemIndex], context),
+              body:
+                  buildDetailsScreen(model.doctors[itemIndex], context, model),
             ));
   }
 
-  Widget buildDetailsScreen(DoctorsModel model, context) {
+  Widget buildDetailsScreen(
+      DoctorsModel model, context, MedicalProvider bookingProvider) {
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -121,30 +130,14 @@ class DetailsScreen extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: defaultFormField(
-                  controller: bookingController,
-                  type: TextInputType.datetime,
-                  onTap: () {
-                    showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime.parse('2021-05-03'),
-                    ).then((value) {
-                      bookingController.text = DateFormat.yMMMd().format(DateTime.now());
-                    });
-                  },
-                  validate: (String value) {
-                    if (value.isEmpty) {
-                      return 'date must not be empty';
-                    }
-
-                    return null;
-                  },
-                  label: "Book date",
-                  prefix: FlutterRemix.calendar_2_line),
+            DatePicker(
+              DateTime.now(),
+              controller: _controller,
+              selectionColor: sColor,
+              selectedTextColor: Colors.white,
+              onDateChange: (date) {
+                _selectedValue = date;
+              },
             ),
             SizedBox(
               height: 15,
@@ -156,7 +149,17 @@ class DetailsScreen extends StatelessWidget {
                 child: defaultButton(
                     text: "Book",
                     onTap: () {
-                      //     navigatTo(context, DoctorAppointmentScreen(itemIndex));
+
+                      bookingProvider.booking(
+                          docName: model.name,
+                          location: model.location,
+                          dateTime: _selectedValue.toString());
+                      print(_selectedValue.toString());
+
+                    //  bookingProvider.appointments.clear();
+
+
+
                     }),
               ),
             )
@@ -165,4 +168,8 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }

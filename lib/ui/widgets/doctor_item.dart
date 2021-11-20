@@ -1,10 +1,8 @@
-
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_app/constants.dart';
 import 'package:medical_app/data/model/doctors_model.dart';
 import 'package:medical_app/ui/screens/details_Screen.dart';
@@ -39,11 +37,13 @@ Widget doctorItem(DoctorsModel model, context, index) {
                 children: [
                   Text(
                     "Dr/ ${model.name}",
-                    style: TextStyle(
-                      fontSize: 21,
+                    style: GoogleFonts.alata(
+                      textStyle: TextStyle(
+                      fontSize: 18,
                       color: sColor,
-                      fontFamily: 'Asmaa',
-                    ),
+
+                    ),),
+                    maxLines: 1,
                   ),
                   const SizedBox(
                     height: 15,

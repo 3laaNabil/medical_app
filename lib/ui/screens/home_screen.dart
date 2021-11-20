@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_app/business_logic/medical/provider.dart';
 import 'package:medical_app/data/model/banner_model.dart';
 import 'package:medical_app/data/model/doctors_model.dart';
@@ -17,65 +18,71 @@ class HomeScreen extends StatelessWidget {
     return Consumer<MedicalProvider>(
         builder: (context, model, child) => Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  CarouselSlider(
-                    items: [
-                      Image.network(
-                          "https://image.freepik.com/free-vector/realistic-medical-webinar-template_23-2149090295.jpg"),
-                      Image.network(
-                          "https://image.freepik.com/free-vector/gradient-kids-doctor-webinar_23-2149097261.jpg"),
-                    ],
-                    options: CarouselOptions(
-                      height: 250.0,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
-                      autoPlayAnimationDuration: const Duration(seconds: 1),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      scrollDirection: Axis.horizontal,
-                      viewportFraction: 1.0,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    CarouselSlider(
+                      items: [
+                        Image.network(
+                            "https://image.freepik.com/free-vector/realistic-medical-webinar-template_23-2149090295.jpg"),
+                        Image.network(
+                            "https://image.freepik.com/free-vector/gradient-kids-doctor-webinar_23-2149097261.jpg"),
+                      ],
+                      options: CarouselOptions(
+                        height: 250.0,
+                        initialPage: 0,
+                        enableInfiniteScroll: true,
+                        reverse: false,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        autoPlayAnimationDuration: const Duration(seconds: 1),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        scrollDirection: Axis.horizontal,
+                        viewportFraction: 1.0,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    alignment: AlignmentDirectional.topStart,
-                    child: Text("Recommended :",
-                        style: TextStyle(
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      alignment: AlignmentDirectional.topStart,
+                      child: Text(
+                        "Recommended :",
+                        style: GoogleFonts.k2d(
+                            textStyle: TextStyle(
                           fontSize: 24,
+                          fontWeight: FontWeight.bold,
                           color: sColor,
                           fontFamily: 'Asma',
                         )),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-
-                  if(model.doctors == null)
-
-                    CircularProgressIndicator(color: sColor,),
-
-                  SingleChildScrollView(
-                    child: GridView.count(
-                      mainAxisSpacing: 1.0,
-                      crossAxisSpacing: 1.0,
-                      childAspectRatio: 1 / 1.5,
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      children: List.generate(
-                          model.doctors.length,
-                          (index) => InkWell(
-                              onTap: () {},
-                              child: recDocItem(
-                                  model.doctors[index], context, index))),
+                      ),
                     ),
-                  )
-                ],
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    if (model.doctors == null)
+                      CircularProgressIndicator(
+                        color: sColor,
+                      ),
+                    SingleChildScrollView(
+                      child: GridView.count(
+                        mainAxisSpacing: 1.0,
+                        crossAxisSpacing: 1.0,
+                        childAspectRatio: 1 / 1.5,
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        crossAxisCount: 2,
+                        children: List.generate(
+                            model.doctors.length,
+                            (index) => InkWell(
+                                onTap: () {},
+                                child: recDocItem(
+                                    model.doctors[index], context, index))),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ));
   }

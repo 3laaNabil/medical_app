@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_app/business_logic/login/provider.dart';
 import 'package:medical_app/constants.dart';
 import 'package:medical_app/ui/screens/home_layout.dart';
@@ -42,12 +43,14 @@ class LoginScreen extends StatelessWidget {
                         ),
                         Text(
                           "Welcome",
-                          style: TextStyle(
-                            color: sColor,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Asmaa',
-                          ),
+                            style: GoogleFonts.k2d(
+                              textStyle: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: sColor,
+
+                              ),
+                            )
                         ),
                         const SizedBox(
                           height: 10.0,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:medical_app/business_logic/medical/provider.dart';
 import 'package:medical_app/constants.dart';
 import 'package:medical_app/ui/screens/edit_profile.dart';
 import 'package:medical_app/ui/screens/login_screen.dart';
+import 'package:medical_app/ui/screens/my_appointment_screen.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -21,7 +23,13 @@ class SettingsScreen extends StatelessWidget {
                 itemCard(
                   "My Appointment",
                   "assets/images/myappointment.png",
-                  () {},
+                  () {
+
+
+
+
+                    navigatTo(context, const MyAppointment());
+                  },
                 ),
                 const SizedBox(
                   height: 10,
@@ -72,7 +80,14 @@ Widget userInfoCard(context, model) {
           children: [
             Text(
               "${model.name}",
-              style: TextStyle(color: sColor, fontSize: 24,fontFamily: 'Asmaa',fontWeight: FontWeight.bold),
+                style: GoogleFonts.alata(
+                  textStyle: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: sColor,
+
+                  ),
+                )
             ),
             const SizedBox(
               height: 8,
@@ -129,7 +144,14 @@ Widget itemCard(text, imgName, onTap) {
             ),
             Text(
               text,
-              style: TextStyle(color: sColor, fontSize: 24,fontFamily: 'Asmaa'),
+                style: GoogleFonts.k2d(
+                  textStyle: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: sColor,
+
+                  ),
+                )
             ),
             const SizedBox(
               height: 8,

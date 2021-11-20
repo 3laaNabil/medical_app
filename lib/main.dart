@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => MedicalProvider()..getUserData()..getAllDoctors(),
+      create: (context) => MedicalProvider()..getUserData()..getAllDoctors()..getAppointment(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
 
