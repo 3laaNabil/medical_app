@@ -4,11 +4,11 @@
 
 
 
-|#Screenshots  |                |
-| ------------- |------------- |
-|![This is an image](Screenshots/log1.png )|![This is an image](Screenshots/log2.png )|
-|![This is an image](Screenshots/reg.png )|![This is an image](Screenshots/google1.png )|
-|![This is an image](Screenshots/google1.png  )|![This is an image](Screenshots/google1.png )|
+|#Screenshots  |                |               |
+| ------------- |------------- | -------------  |
+|![This is an image](Screenshots/reg.png )|![This is an image](Screenshots/log1.png )|![This is an image](Screenshots/log2.png )|
+|![This is an image](Screenshots/app1.png )|![This is an image](Screenshots/app2.png )|
+
 
 
 
